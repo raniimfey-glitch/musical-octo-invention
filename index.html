@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- بيانات حقوق الملكية الفكرية والتوثيق -->
+    <meta name="author" content="Samira Abdessadok">
+    <meta name="description" content="منصة تعليمية مركزية تضم التطبيقات المبتكرة لـ Samira Abdessadok.">
+    <meta name="keywords" content="تعليم, تطبيقات تعليمية, Samira Abdessadok, برمجة, منصة تفاعلية, Hamza Challenge">
+    <meta property="og:title" content="منصة تطبيقات Samira Abdessadok">
+    <meta property="og:description" content="استكشف مجموعة من التطبيقات التعليمية التفاعلية المبتكرة.">
+    
+    <title>منصة التطبيقات الرقمية | Samira Abdessadok</title>
+
+    <style>
+        /* التنسيق العام */
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f2f5; margin: 0; padding: 20px; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .search-container { text-align: center; margin-bottom: 20px; }
+        #searchBar { padding: 10px; width: 300px; border-radius: 20px; border: 1px solid #ccc; outline: none; }
+        
+        .filters { text-align: center; margin-bottom: 30px; }
+        .filter-btn { padding: 8px 16px; margin: 5px; cursor: pointer; border: none; border-radius: 5px; background: #ddd; transition: 0.3s; }
+        .filter-btn.active { background: #007bff; color: white; }
+        
+        /* شبكة عرض التطبيقات */
+        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 1000px; margin: auto; }
+        .card { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: 0.3s; }
+        .card:hover { transform: scale(1.02); }
+        .btn { display: block; margin-top: 15px; padding: 10px; background: #007bff; color: white; text-align: center; text-decoration: none; border-radius: 5px; }
+        
+        footer { text-align: center; margin-top: 50px; font-size: 0.9em; color: #666; }
+    </style>
+</head>
+<body>
+
+    <!-- الترويسة -->
+    <div class="header">
+        <h1>مكتبة تطبيقاتي الرقمية</h1>
+        <p>ابتكارات برمجية في خدمة التعليم</p>
+    </div>
+
+    <!-- شريط البحث -->
+    <div class="search-container">
+        <input type="text" id="searchBar" placeholder="ابحث عن تطبيق..." onkeyup="filterApps()">
+    </div>
+
+    <!-- التصنيفات -->
+    <div class="filters">
+        <button class="filter-btn active" onclick="filterCategory('all', this)">الكل</button>
+        <button class="filter-btn" onclick="filterCategory('تعليم', this)">تعليم</button>
+        <button class="filter-btn" onclick="filterCategory('أدوات', this)">أدوات</button>
+    </div>
+
+    <!-- قائمة التطبيقات -->
+    <div class="container" id="appGrid">
+        <div class="card" data-category="تعليم">
+            <h3>Hamza Challenge</h3>
+            <p>تطبيق تفاعلي مصمم وفق فلسفة التعلم بالممارسة.</p>
+            <a href="#" target="_blank" class="btn">فتح التطبيق</a>
+        </div>
+        <div class="card" data-category="أدوات">
+            <h3>مساعد العقود</h3>
+            <p>أداة ذكية لتحليل واستخراج البيانات القانونية.</p>
+            <a href="#" target="_blank" class="btn">فتح التطبيق</a>
+        </div>
+    </div>
+
+    <!-- تذييل الصفحة -->
+    <footer>
+        <p>© 2026 Samira Abdessadok. All Rights Reserved.</p>
+    </footer>
+
+    <!-- المنطق البرمجي -->
+    <script>
+        function filterCategory(cat, btn) {
+            // تحديث الأزرار
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                if (cat === 'all' || card.getAttribute('data-category') === cat) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function filterApps() {
+            let input = document.getElementById('searchBar').value.toLowerCase();
+            let cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                let title = card.querySelector('h3').innerText.toLowerCase();
+                card.style.display = title.includes(input) ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
